@@ -1,0 +1,92 @@
+Last Update: March 30th 2017
+%====================Potential Test Case Errors and Solutions====================
+Errors and Solutions for reading Test keywords
+--Run Through the test case for the following Keywords
+	--Test Result Information
+	--Test Suite Information
+	--Test Case Information
+	--Test Case Requirements
+--As the time creation test come in 1 forms
+1)	--Test Result Information
+	--Test Suite Information
+
+2)	--Test Result Information
+	--Test Case Information
+	--Test Case Requirements
+
+Test Cases with no unique keywords
+--Run through the list reading all the keywords first
+--than read all the results
+--If 2 blank lines are read than the run through is complete
+
+Errors and Solutions for reading Test Result Information
+--Start at line after the name
+--Read and append all the keys until the first space
+--Read and append all the results until the 2nd space
+--exit the loop for the 2nd space
+--print all keys and results to the length of the results
+--exit function
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Errors and Solutions for reading Test Suite Information
+Errors
+--Potential Inconsistency Issue
+--Name and result for Name may be around Back to Report Summary
+Solution
+--Name always appears before 'Back to Report Summary'
+--Run through the file and once the key 'Name' has been found execute inner loop
+	--Inner loop searches for first line that is not 'Name' or 'Back to Report Summary'
+	--This will be the result for the first Name
+--After the inner loop is complete the process repeats until 'Back to Report Summary' is read
+--Potential error
+	--Ensuring the same name is not read twice it may be necessary to delete the line into an empty line
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Errors and Solutions for reading Test Case Information
+--Error in the consistency of the diplay of Test Case Information keys and results
+--Results may appear before 'Test Case Information' or it's keys 
+--Key words may also appear between keys and results
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Errors and Solutions for reading Test Case Requirements
+--Read the lines appending them to keys until first empty line
+--Than read the lines appending them to the results until the first empty line
+Solution
+--Ignore reading the lines and simply under this test case the
+	--the key 'Name'
+	--and the name of the test case that contains this keyword
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Errors and Solutions for reading Simulation keywords
+--Run through the test case and find the following keywords and their indexes
+	--Simulation
+	--System Under Test Information
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Errors and Solutions for reading System Under Test Information
+--Read the lines as keys until the first empty line
+--Read the next lines as results until the second empty line
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Errors and Solutions regarding Page Breaks
+--If a test encompases two pages this messes up with the formatting of the test classes in the txt file
+--In the report format it will appear like so
+	--Key: Result
+	--Key: Result
+	--page break
+	--Key: Result
+	--Key: Result
+--In the text file it will appear as so
+	--Key:
+	--Key:
+	--Result
+	--Result
+	--
+	--Key
+	--Key
+	--Result
+	--Result
+--Program must be re read in order take into consider of this
+--Test Cases where this can be fixed.
+	--Basic Test Cases
+	
+	--Test Result Information
+	
+	--Test Result Information with Description
+	--Test Case Requirements
+		
+	--System Under Test Information

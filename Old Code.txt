@@ -1,0 +1,167 @@
+Old Code
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#This function goes through a test case that has no additional and specific keywords
+#For this to occur it just goes through the general test case
+def printBasicTestCase(lineCount, text):
+    keys = []
+    results = []
+    endCount = 0#This variable counts the number of empty lines. At 2 the function exits
+    while endCount < 2:
+        if(endCount == 0 and text[lineCount] != " "):#when the function is looking for the keywords
+            keys.append(text[lineCount])
+        elif(endCount == 1 and text[lineCount] != " "):#when the function is looking for the answers to the keywords
+            results.append(text[lineCount])
+        else:#this is when text[lineCount] == " "
+            endCount+=1
+        lineCount+=1;
+    i = 0
+    j = 1
+    print keys[0]
+    while i < len(results):
+        print keys[j]+":\t"+results[i]
+        i+=1
+        j+=1
+    return
+#=====These functions are used for obtaining test case relevant information======
+#this function identifies all the lines which contain keywords in a test case
+#it starts at a line where 1 test case begins and continues until it reaches
+#the starting point of the next test case
+#testIndexes is an array that holds the line numbers of the different test cases
+#index references the test case that is currently being used
+def obtainTestKWLines(testIndexes, index, text, keys):
+    keyWordIndex = [0]*len(keys)
+    #print "index: "+str(index)
+    start = testIndexes[index]+1
+    if index+1>=len(testIndexes):
+        end = len(text)
+    else:
+        end = testIndexes[index+1]
+    while start<end:
+        i = 0
+        while i<len(keys):
+            if text[start] == keys[i]:
+                keyWordIndex[i] = start
+            i+=1
+        start+=1
+    #if(index = tes
+    return keyWordIndex
+
+def obtainTestResultInfo(start, lines, end):
+    emptyLine = 0
+    lineCount = start+1
+    while lines[lineCount] == " ":
+        lineCount+=1
+    keys = []
+    results = []
+    
+    while lineCount < end:
+        if(emptyLine == 0 and lines[lineCount]!=" "):
+            keys.append(lines[lineCount])
+        elif((emptyLine == 1 or emptyLine == 2) and lines[lineCount]!=" "):
+            results.append(lines[lineCount])
+        else:
+            if(lines[lineCount]==" "):
+                emptyLine+=1
+        lineCount+=1
+    lineCount=0
+    
+    while lineCount<len(results):
+        print str(keys[lineCount])+":\t"+str(results[lineCount])
+        lineCount+=1             
+    return
+
+
+#The data for 'Test Case Information' can appear before or after where
+#Test Case Information appears in the test case line or after
+def obtainTestCaseInfo(start, lines, end):
+    emptyLine = 0
+    lineCount = start+1
+    keys = []
+    results = []
+    while lineCount<end:
+        if(emptyLine == 0 and lines[lineCount]!=" "):
+            keys.append(lines[lineCount])
+        elif((emptyLine == 1) and lines[lineCount]!=" "):
+            results.append(lines[lineCount])
+        else:
+            if(lines[lineCount]==" "):
+                emptyLine+=1
+        lineCount+=1
+    lineCount=0
+    while lineCount<len(results):
+        print str(keys[lineCount])+": "+str(results[lineCount])
+        lineCount+=1
+    return
+def obtainTestSuiteInfo(start, lines, end):
+    emptyLine = 0
+    lineCount = start+1
+    keys = []
+    results = []
+    while len(keys)<1 or len(results)<1:
+        if(emptyLine == 0 and lines[lineCount]!=" "):
+            if lines[lineCount]== "Name": #Name is a keyword in the Test Suit 
+                keys.append(lines[lineCount])
+        elif(emptyLine == 1 and lines[lineCount]!=" "):
+            results.append(lines[lineCount])
+        else:
+            if(lines[lineCount]==" "):
+                emptyLine+=1
+        lineCount+=1
+    lineCount=0
+    while lineCount<len(results):
+        print str(keys[lineCount])+": \t"+str(results[lineCount])
+        lineCount+=1
+    return
+
+def obtainTestCaseRes(start, lines, end):
+    emptyLine = 0
+    lineCount = start+1
+    keys = []
+    results = []
+    while lineCount<end:
+        
+        if(emptyLine == 0 and lines[lineCount]!=" "):
+            keys.append(lines[lineCount])
+        elif(emptyLine == 1 and lines[lineCount]!=" "):
+            results.append(lines[lineCount])
+        else:
+            if(lines[lineCount]==" "):
+                emptyLine+=1
+        lineCount+=1
+    lineCount=0
+    while lineCount<len(keys):
+        print str(keys[lineCount])+": "+str(results[lineCount])
+        lineCount+=1
+    return
+
+#=====These functions are used for obtaining Simulation relevant information=====
+def obtainSimKWLines(start, lines, keyWords):
+    lineCount = start+1
+    keyWordCount = 0;
+    keyIndex = []
+    while lineCount<len(lines):
+        if lines[lineCount] == keyWords[keyWordCount]:
+            keyWordCount+=1
+            keyIndex.append(lineCount)
+            lineCount+=1
+        if keyWordCount >= len(keyWords):
+            break
+    return keyIndex
+def obtainSysUndTestInfo(start, lines, end):
+    emptyLine = 0
+    lineCount = start+1
+    keys = []
+    results = []
+    while lineCount<end:
+        if(emptyLine == 0 and lines[lineCount]!= " "):
+            keys.append(lines[lineCount])
+        elif(emptyLine == 1 and lines[lineCount]!=" "):
+            results.append(lines[lineCount])
+        else:
+            if(lines[lineCount]==" "):
+                emptyLine+=1
+        lineCount+=1
+    lineCount=0
+    while lineCount<len(keys):
+        print str(keys[lineCount])+": "+str(results[lineCount])
+    return
